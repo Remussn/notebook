@@ -41,7 +41,7 @@ and here
 
 # 1. 一元随机变量
 ## 1.0 随机变量的定义
-- ![(http://latex.codecogs.com/gif.latex?\\(\Omega,\ F,\ P\))
+- ![(http://latex.codecogs.com/gif.latex?\\\(\Omega,\ F,\ P\))
 ## 1.1 一元随机变量的描述方法
 - PDF 与 CDF
 - MGF 与 CF

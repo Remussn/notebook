@@ -2,6 +2,7 @@
 [Headers](#headers)  
 [Emphasis](#emphasis) -->
 
+![Mindmap](./ml_summary_img/ml_summary_mindmap.png)
 [//]: # (https://stackoverflow.com/questions/18244417/how-do-i-create-some-kind-of-table-of-content-in-github-wiki)
 <!---
 your comment goes here

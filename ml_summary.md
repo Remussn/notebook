@@ -33,9 +33,18 @@ and here
 ## 0.3 对描述工具的估计
 **参数估计与非参数估计.** 参数估计通过少数 具有少数参数的 函数来描述分布函数，进而通过估计涉及的参数来确定分布函数的表达形式. 与之相反，如果我们希望估计的分布函数本身过于复杂，或是我们完全不知道/无法假设其分布族，那么这时只能通过无限或极多个函数对原分布函数进行近似逼近. 这时由于其涉及的参数也无穷多或有限但极其多，我们无法通过参数估计的方法确定它们. 非参数估计具体又可以分为局部方法和全局方法. 
 
-**频率方法与贝叶斯方法** 频率方法与贝叶斯方法的核心目标都是对参数进行描述，由于两派对待估计参数 ![](http://latex.codecogs.com/gif.latex?\theta}) 的理解不同而发展出不同的方法. 贝叶斯学派认为我们可以直接估计 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) ，进而在此基础上为所欲为(如估计参数，或结合风险函数进行决策). 频率学派则认为待估计参数的真实值并非随机变量，故而 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) 无意义，而应通过“遍历”参数空间来找到我们所要的参数，在参数估计问题中即 ![](http://latex.codecogs.com/gif.latex?\theta^*=argmax_{\theta}{likelihood(\theta)}}). 
+**频率方法与贝叶斯方法** 频率方法与贝叶斯方法的核心目标都是对参数进行描述，由于两派对待估计参数 ![](http://latex.codecogs.com/gif.latex?\theta}) 的理解不同而发展出不同的方法. 贝叶斯学派认为我们可以直接估计 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) ，进而在此基础上为所欲为(如估计参数，或结合风险函数进行决策). 频率学派则认为待估计参数的真实值并非随机变量，故而 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) 无意义，而应通过“遍历”参数空间来找到我们所要的参数，在参数估计问题中即 ![](http://latex.codecogs.com/gif.latex?\theta^*=argmin_{\theta}{likelihood(\theta)}}). 
 
 以上提及的贝叶斯方法可称之为“狭义”贝叶斯方法. 出于实用性考虑，很多时候人们说的“贝叶斯方法”实际上还包括了 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) 的估计方法. 在统计学习/机器学习语境下，即是在我们有先验分布 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) 的基础上，如何根据新的观测数据 ![](http://latex.codecogs.com/gif.latex?(X,Y)}) 来更新 ![](http://latex.codecogs.com/gif.latex?p(\theta)}), 亦即 ![](http://latex.codecogs.com/gif.latex?p(\theta)+(X,Y)\rightarrow{P(\theta|X,Y)}}). 总之，只要是使用了 ![](http://latex.codecogs.com/gif.latex?p(\theta)}) 来解决问题的方法，均可以称之为贝叶斯方法. 
+
+贝叶斯方法常使用贝叶斯公式，但不可将二者混为一谈. 在“传统”的参数估计问题中，我们已知随机变量的生成模型 ![](http://latex.codecogs.com/gif.latex?p(x|\theta)) ，并有观测数据 X，希望估计参数 ![](http://latex.codecogs.com/gif.latex?\theta). 例如投硬币问题，已知投币 n 次出现 x 次正面的概率 ![](http://latex.codecogs.com/gif.latex?p(x|n,\theta)=\binom{n}{x}\theta^x(1-\theta)^{n-x}),希望基于 n 和 x 的观测值进行参数估计. 在这种问题中我们往往需要用到贝叶斯公式将“生成模型” ![](http://latex.codecogs.com/gif.latex?p(x|n,\theta)) 转换为“判别模型” ![](http://latex.codecogs.com/gif.latex?p(\theta|n,x)): ![](http://latex.codecogs.com/gif.latex?p(\theta|n,x)=\frac{p(x|n,\theta)p(\theta)}{\int{p(x|n,\theta)p(\theta)d\theta}}). 
+
+从形式上来看，频率方法参数估计如上文所述，通常表现为优化问题，如最大似然 ![](http://latex.codecogs.com/gif.latex?\theta^*=argmin_{\theta}{Likelihood(\theta)}}) 或最小损失 ![](http://latex.codecogs.com/gif.latex?\theta^*=argmin_{\theta}{Loss(\theta)}}). 而贝叶斯方法则没有这样的一般形式. 
+
+
+参数估计中贝叶斯方法的应用有：
+- 点估计：![](http://latex.codecogs.com/gif.latex?\theta^*=argmin_{\theta}{p(\theta)}}) (MAP) 或 ![](http://latex.codecogs.com/gif.latex?\theta^*=E(\theta)})
+- 区间估计：![](http://latex.codecogs.com/gif.latex?\forall{a,b}\in{R},if\int_a^bp(\theta)d\theta=95\\%), 那么区间 ![](http://latex.codecogs.com/gif.latex?[a,b]) 即是 ![](http://latex.codecogs.com/gif.latex?\theta) 的95%置信区间. 
 
 **回归与分类.** 我们可以有两种方式进行分类：其一，在回归函数 ![](http://latex.codecogs.com/gif.latex?f(x)}) 的基础上加入判别函数 ![](http://latex.codecogs.com/gif.latex?\delta(f)(x)})；其二，可以通过直接学习分类超平面从而分类. 
 
